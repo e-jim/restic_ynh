@@ -11,27 +11,6 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-#REMOVEME? ynh_clean_setup () {
-	ynh_clean_check_starting
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-#=================================================
-# LOAD SETTINGS
-#=================================================
-#REMOVEME? ynh_script_progression --message="Loading installation settings..."
-
-#REMOVEME? export app=$YNH_APP_INSTANCE_NAME
-
-#REMOVEME? export server=$(ynh_app_setting_get --app=$app --key=server)
-
-export install_dir="/opt/yunohost/${app}"
-
-#=================================================
 # INSTALL RESTIC
 #=================================================
 install_restic
