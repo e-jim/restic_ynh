@@ -23,7 +23,7 @@ This package uses restic to make backups to a sftp server.
 The package does not handle local backups yet but you can work around that by using the local sftp server as target server (see my comment [here](https://forum.yunohost.org/t/sauvegarde-yunohost-avec-restic/10275/33)).
 
 
-**Shipped version:** 0.12.0~ynh9
+**Shipped version:** 0.16.2~ynh1
 ## Disclaimers / important information
 
 ## Usage
