@@ -10,35 +10,9 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-#REMOVEME? ynh_clean_setup () {
-	ynh_clean_check_starting
-}
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-#=================================================
-# RETRIEVE ARGUMENTS FROM THE MANIFEST
-#=================================================
-#REMOVEME? export app=$YNH_APP_INSTANCE_NAME
-export install_dir="/opt/yunohost/${app}"
-
-# Retrieve arguments
-ynh_export server port ssh_user backup_path passphrase on_calendar check_on_calendar check_read_data_on_calendar conf data apps allow_extra_space_use
-
-#=================================================
-# STORE SETTINGS FROM MANIFEST
-#=================================================
-#REMOVEME? ynh_script_progression --message="Storing installation settings..."
-
-ynh_save_args server port ssh_user backup_path passphrase on_calendar check_on_calendar check_read_data_on_calendar conf data apps allow_extra_space_use
-
-#=================================================
 # INSTALL RESTIC
 #=================================================
-ynh_script_progression --message="Installing restic binary" --weight=7
+ynh_script_progression --message="Installing Restic binary" --weight=7
 
 install_restic
 

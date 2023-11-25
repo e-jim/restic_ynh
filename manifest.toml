@@ -5,7 +5,7 @@ name = "Restic"
 description.en = "Backup your server with Restic"
 description.fr = "Sauvegardez votre serveur avec Restic"
 
-version = "0.12.0~ynh9"
+version = "0.16.2~ynh1"
 
 maintainers = ["Lionel Coupouchetty-Ramouchetty"]
 
@@ -14,18 +14,19 @@ license = "BSD-2-Clause"
 website = "https://restic.net"
 admindoc = "https://restic.readthedocs.io/en/latest/"
 code = "https://github.com/restic/restic"
-cpe = "???" # FIXME: optional but recommended if relevant, this is meant to contain the Common Platform Enumeration, which is sort of a standard id for applications defined by the NIST. In particular, Yunohost may use this is in the future to easily track CVE (=security reports) related to apps. The CPE may be obtained by searching here: https://nvd.nist.gov/products/cpe/search. For example, for Nextcloud, the CPE is 'cpe:2.3:a:nextcloud:nextcloud' (no need to include the version number)
-fund = "???" # FIXME: optional but recommended (or remove if irrelevant / not applicable). This is meant to be an URL where people can financially support this app, especially when its development is based on volunteers and/or financed by its community. YunoHost may later advertise it in the webadmin.
 
 [integration]
 yunohost = ">= 11.2"
-architectures = "all" # FIXME: can be replaced by a list of supported archs using the dpkg --print-architecture nomenclature (amd64/i386/armhf/arm64), for example: ["amd64", "i386"]
+architectures = "all"
 multi_instance = true
-ldap = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "sso" key : the "ldap" key corresponds to wether or not a user *can* login on the app using its YunoHost credentials.
-sso = "?" # FIXME: replace with true, false, or "not_relevant". Not to confuse with the "ldap" key : the "sso" key corresponds to wether or not a user is *automatically logged-in* on the app when logged-in on the YunoHost portal.
-disk = "50M" # FIXME: replace with an **estimate** minimum disk requirement. e.g. 20M, 400M, 1G, ...
-ram.build = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
-ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requirement. e.g. 50M, 400M, 1G, ...
+
+ldap = false
+
+sso = false
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
 
 [install]
     [install.server]
@@ -113,8 +114,23 @@ ram.runtime = "50M" # FIXME: replace with an **estimate** minimum ram requiremen
     default = "Sat *-*-1..7 3:15:00"
 
 [resources]
+
+    [resources.sources]
+
+        [resources.sources.main]
+
+        url = "https://github.com/restic/restic/releases/download/v0.16.2/restic_0.16.2_linux_amd64.bz2"
+        sha256 = "d68200fee4e3d0fafcdd0b20a2e6d7404dde053c3a71d5a8ca678d2e1f9f9e8e"
+        rename = "restic"
+
+        autoupdate.strategy = "latest_github_tag"
+
+
     [resources.system_user]
 
     [resources.install_dir]
+    dir = "/opt/yunohost/__APP__"
+
+    [resources.ports]
 
     [resources.permissions]
