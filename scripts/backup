@@ -11,44 +11,23 @@ source ../settings/scripts/_common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# MANAGE SCRIPT FAILURE
-#=================================================
-
-# Exit if an error occurs during the execution of the script
-#REMOVEME? ynh_abort_if_errors
-
-#=================================================
-# LOAD SETTINGS
-#=================================================
-#REMOVEME? ynh_print_info --message="Loading installation settings..."
-
-#REMOVEME? export app=$YNH_APP_INSTANCE_NAME
-export install_dir="/opt/yunohost/${app}"
-
-#=================================================
-# DECLARE DATA AND CONF FILES TO BACKUP
-#=================================================
-ynh_print_info --message="Declaring files to be backed up..."
-
-
-#=================================================
 # BACKUP VARIOUS FILES
 #=================================================
 
-ynh_backup "/usr/local/bin/backup-with-$app"
-ynh_backup "/etc/systemd/system/$app.service"
-ynh_backup "/etc/systemd/system/$app.timer"
-ynh_backup "/etc/systemd/system/${app}_check.service"
-ynh_backup "/etc/systemd/system/${app}_check.timer"
-ynh_backup "/etc/systemd/system/${app}_check_read_data.service"
-ynh_backup "/etc/systemd/system/${app}_check_read_data.timer"
-ynh_backup "/etc/yunohost/hooks.d/backup_method/05-${app}_app"
-ynh_backup "${install_dir}/check_method_${app}"
-ynh_backup "${install_dir}/restic_log_${app}"
+ynh_backup --src_path="/usr/local/bin/backup-with-$app"
+ynh_backup --src_path="/etc/systemd/system/$app.service"
+ynh_backup --src_path="/etc/systemd/system/$app.timer"
+ynh_backup --src_path="/etc/systemd/system/${app}_check.service"
+ynh_backup --src_path="/etc/systemd/system/${app}_check.timer"
+ynh_backup --src_path="/etc/systemd/system/${app}_check_read_data.service"
+ynh_backup --src_path="/etc/systemd/system/${app}_check_read_data.timer"
+ynh_backup --src_path="/etc/yunohost/hooks.d/backup_method/05-${app}_app"
+ynh_backup --src_path="${install_dir}/check_method_${app}"
+ynh_backup --src_path="${install_dir}/restic_log_${app}"
 ssh_dir="/root/.ssh"
-ynh_backup "${ssh_dir}/id_${app}_ed25519"
-ynh_backup "${ssh_dir}/id_${app}_ed25519.pub"
-ynh_backup "${ssh_dir}/config"
+ynh_backup --src_path="${ssh_dir}/id_${app}_ed25519"
+ynh_backup --src_path="${ssh_dir}/id_${app}_ed25519.pub"
+ynh_backup --src_path="${ssh_dir}/config"
 
 #=================================================
 # END OF SCRIPT
