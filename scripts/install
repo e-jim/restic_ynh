@@ -13,17 +13,17 @@ source /usr/share/yunohost/helpers
 # MANAGE SCRIPT FAILURE
 #=================================================
 
-ynh_clean_setup () {
+#REMOVEME? ynh_clean_setup () {
 	ynh_clean_check_starting
 }
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # RETRIEVE ARGUMENTS FROM THE MANIFEST
 #=================================================
-export app=$YNH_APP_INSTANCE_NAME
-export final_path="/opt/yunohost/${app}"
+#REMOVEME? export app=$YNH_APP_INSTANCE_NAME
+export install_dir="/opt/yunohost/${app}"
 
 # Retrieve arguments
 ynh_export server port ssh_user backup_path passphrase on_calendar check_on_calendar check_read_data_on_calendar conf data apps allow_extra_space_use
@@ -31,7 +31,7 @@ ynh_export server port ssh_user backup_path passphrase on_calendar check_on_cale
 #=================================================
 # STORE SETTINGS FROM MANIFEST
 #=================================================
-ynh_script_progression --message="Storing installation settings..."
+#REMOVEME? ynh_script_progression --message="Storing installation settings..."
 
 ynh_save_args server port ssh_user backup_path passphrase on_calendar check_on_calendar check_read_data_on_calendar conf data apps allow_extra_space_use
 
@@ -52,7 +52,7 @@ useradd -m ${app}
 ynh_script_progression --message="Configure ${app} user sudoer rights"
 
 cat > /tmp/${app}_sudoer << EOSUDOER
-${app} ALL = (root) NOPASSWD: /usr/bin/yunohost*, /bin/journalctl*, /usr/bin/find /etc/yunohost/apps -name backup, ${final_path}/check_method_${app}
+${app} ALL = (root) NOPASSWD: /usr/bin/yunohost*, /bin/journalctl*, /usr/bin/find /etc/yunohost/apps -name backup, ${install_dir}/check_method_${app}
 EOSUDOER
 visudo -cf /tmp/${app}_sudoer && mv /tmp/${app}_sudoer /etc/sudoers.d/${app}
 
@@ -70,21 +70,21 @@ mkdir -p /usr/share/yunohost/backup_method
 ynh_script_progression --message="Setting up backup methods"
 
 ynh_configure backup_method "/etc/yunohost/hooks.d/backup_method/05-${app}_app"
-ynh_configure check_method "${final_path}/check_method_${app}"
+ynh_configure check_method "${install_dir}/check_method_${app}"
 
 #=================================================
 # SETUP LOG SCRIPTS
 #=================================================
 ynh_script_progression --message="Setting up backup log script"
 
-ynh_configure restic_log "${final_path}/restic_log_${app}"
-chmod +x "${final_path}/restic_log_${app}"
-chown ${app}: "${final_path}/restic_log_${app}"
+ynh_configure restic_log "${install_dir}/restic_log_${app}"
+chmod +x "${install_dir}/restic_log_${app}"
+chown ${app}: "${install_dir}/restic_log_${app}"
 
 ynh_script_progression --message="Setting up check log script"
-ynh_configure restic_check_log "${final_path}/restic_check_log_${app}"
-chmod +x "${final_path}/restic_check_log_${app}"
-chown ${app}: "${final_path}/restic_check_log_${app}"
+ynh_configure restic_check_log "${install_dir}/restic_check_log_${app}"
+chmod +x "${install_dir}/restic_check_log_${app}"
+chown ${app}: "${install_dir}/restic_check_log_${app}"
 
 #=================================================
 # CONFIGURE CRON
@@ -92,11 +92,11 @@ chown ${app}: "${final_path}/restic_check_log_${app}"
 ynh_script_progression --message="Configuring cron" --weight=5
 
 ynh_configure backup-with-restic "/usr/local/bin/backup-with-${app}"
-ynh_configure check-restic "${final_path}/check-${app}"
+ynh_configure check-restic "${install_dir}/check-${app}"
 chmod +x "/usr/local/bin/backup-with-${app}"
 chown ${app}: "/usr/local/bin/backup-with-${app}"
-chmod +x "${final_path}/check-${app}"
-chmod +x "${final_path}/check_method_${app}"
+chmod +x "${install_dir}/check-${app}"
+chmod +x "${install_dir}/check_method_${app}"
 ynh_add_systemd_config --service=${app} --template=systemd.service
 ynh_add_systemd_config --service=${app}_check --template=systemd_check.service
 ynh_add_systemd_config --service=${app}_check_read_data --template=systemd_check_read_data.service
@@ -116,9 +116,9 @@ systemctl start ${app}_check_read_data.timer
 #=================================================
 # SET PERMISSIONS ON FINAL PATH
 #=================================================
-ynh_script_progression --message="Set permissions on ${final_path}"
+ynh_script_progression --message="Set permissions on ${install_dir}"
 
-chown -R ${app}: ${final_path}
+chown -R ${app}: ${install_dir}
 
 #=================================================
 # SETUP LOGROTATE

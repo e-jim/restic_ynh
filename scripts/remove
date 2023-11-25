@@ -12,10 +12,10 @@ source /usr/share/yunohost/helpers
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_script_progression --message="Loading installation settings..."
+#REMOVEME? ynh_script_progression --message="Loading installation settings..."
 
-app=$YNH_APP_INSTANCE_NAME
-export final_path="/opt/yunohost/${app}"
+#REMOVEME? app=$YNH_APP_INSTANCE_NAME
+export install_dir="/opt/yunohost/${app}"
 
 #=================================================
 # REMOVE LOGROTATE CONFIGURATION
@@ -28,10 +28,10 @@ ynh_remove_logrotate
 #=================================================
 # REMOVE DEPENDENCIES
 #=================================================
-ynh_script_progression --message="Removing dependencies..." --weight=4
+#REMOVEME? ynh_script_progression --message="Removing dependencies..." --weight=4
 
 # Remove metapackage and its dependencies
-ynh_remove_app_dependencies
+#REMOVEME? ynh_remove_app_dependencies
 
 #=================================================
 # SPECIFIC REMOVE
@@ -50,11 +50,11 @@ ynh_secure_remove "/etc/systemd/system/${app}_check.timer"
 ynh_secure_remove "/etc/systemd/system/${app}_check_read_data.timer"
 ynh_secure_remove "/usr/local/bin/backup-with-${app}"
 ynh_secure_remove "/etc/yunohost/hooks.d/backup_method/05-${app}_app"
-ynh_secure_remove "${final_path}/check_method_${app}"
-ynh_secure_remove "${final_path}/check-${app}"
-ynh_secure_remove "${final_path}/restic_log_${app}"
-ynh_secure_remove "${final_path}/restic_check_log_${app}"
-ynh_secure_remove "${final_path}"
+ynh_secure_remove "${install_dir}/check_method_${app}"
+ynh_secure_remove "${install_dir}/check-${app}"
+ynh_secure_remove "${install_dir}/restic_log_${app}"
+ynh_secure_remove "${install_dir}/restic_check_log_${app}"
+ynh_secure_remove "${install_dir}"
 
 #=================================================
 # REMOVE SSH CONFIG

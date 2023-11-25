@@ -50,10 +50,10 @@ ynh_export () {
   for var in $@;
   do
     ynh_arg=$(echo $var | awk '{print toupper($0)}')
-    if [ "$var" == "path_url" ]; then
+    if [ "$var" == "path" ]; then
       ynh_arg="PATH"
     fi
-    ynh_arg="YNH_APP_ARG_$ynh_arg"
+#REMOVEME?     ynh_arg="YNH_APP_ARG_$ynh_arg"
     export $var="${!ynh_arg}"
   done
 }
@@ -63,7 +63,7 @@ ynh_save_args () {
   for var in $@;
   do
     local setting_var="$var"
-    if [ "$var" == "path_url" ]; then
+    if [ "$var" == "path" ]; then
       setting_var="path"
     fi
     ynh_app_setting_set $app $setting_var "${!var}"

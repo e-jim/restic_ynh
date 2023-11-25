@@ -15,15 +15,15 @@ source /usr/share/yunohost/helpers
 #=================================================
 
 # Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
+#REMOVEME? ynh_abort_if_errors
 
 #=================================================
 # LOAD SETTINGS
 #=================================================
-ynh_print_info --message="Loading installation settings..."
+#REMOVEME? ynh_print_info --message="Loading installation settings..."
 
-export app=$YNH_APP_INSTANCE_NAME
-export final_path="/opt/yunohost/${app}"
+#REMOVEME? export app=$YNH_APP_INSTANCE_NAME
+export install_dir="/opt/yunohost/${app}"
 
 #=================================================
 # DECLARE DATA AND CONF FILES TO BACKUP
@@ -43,8 +43,8 @@ ynh_backup "/etc/systemd/system/${app}_check.timer"
 ynh_backup "/etc/systemd/system/${app}_check_read_data.service"
 ynh_backup "/etc/systemd/system/${app}_check_read_data.timer"
 ynh_backup "/etc/yunohost/hooks.d/backup_method/05-${app}_app"
-ynh_backup "${final_path}/check_method_${app}"
-ynh_backup "${final_path}/restic_log_${app}"
+ynh_backup "${install_dir}/check_method_${app}"
+ynh_backup "${install_dir}/restic_log_${app}"
 ssh_dir="/root/.ssh"
 ynh_backup "${ssh_dir}/id_${app}_ed25519"
 ynh_backup "${ssh_dir}/id_${app}_ed25519.pub"
