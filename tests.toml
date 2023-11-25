@@ -1,0 +1,20 @@
+test_format = 1.0
+
+[default]
+
+    # ------------
+    # Tests to run
+    # ------------
+
+		args.server = "dst.domain.tld"
+		args.ssh_user = "sam"
+		args.passphrase = "APassphrase"
+		args.conf = 1
+		args.port = 2222
+		args.backup_path = "src.domain.tld"
+		args.data = 1
+		args.app = "all"
+		args.allow_extra_space_use = 1
+		args.on_calendar = "Daily"
+		args.check_on_calendar = "*-*-8,15,22 3:15"
+		args.check_read_data_on_calendar = "*-*-1 3:15"
