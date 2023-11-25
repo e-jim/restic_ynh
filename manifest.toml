@@ -39,9 +39,9 @@ ram.runtime = "50M"
 
     [install.port]
     ask.en = "sftp port of your server"
-    ask.fr = "Le port sftp de votre serveur"
-    help.en = "Listening port of your sftp or ssh server. The default value is 22"
-    help.fr = "Le port d'écoute de votre serveur sftp ou ssh. La valeur par défaut est 22"
+    ask.fr = "Le port sFTP de votre serveur"
+    help.en = "Listening port of your sftp or SSH server. The default value is 22"
+    help.fr = "Le port d'écoute de votre serveur sftp ou SSH. La valeur par défaut est 22"
     type = "string"
     example = "22"
     default = "22"
@@ -56,8 +56,8 @@ ram.runtime = "50M"
     default = "."
 
     [install.ssh_user]
-    ask.en = "Indicate the ssh user to use to connect on this server"
-    ask.fr = "Indiquez l'utilisateur ssh à utiliser pour se connecter au serveur"
+    ask.en = "Indicate the SSH user to use to connect on this server"
+    ask.fr = "Indiquez l'utilisateur SSH à utiliser pour se connecter au serveur"
     type = "string"
     example = "john"
 
@@ -67,19 +67,19 @@ ram.runtime = "50M"
     type = "password"
 
     [install.conf]
-    ask.en = "Would you like to backup your YunoHost configuration ?"
+    ask.en = "Would you like to backup your YunoHost configuration?"
     ask.fr = "Souhaitez-vous effectuer des sauvegardes des configurations du système YunoHost ?"
     type = "boolean"
     default = true
 
     [install.data]
-    ask.en = "Would you like to backup mails and user home directory ?"
+    ask.en = "Would you like to backup mails and user home directory?"
     ask.fr = "Souhaitez-vous effectuer des sauvegardes des mails et des répertoire des utilisateurs ?"
     type = "boolean"
     default = true
 
     [install.apps]
-    ask.en = "Which apps would you backup (list separated by comma or 'all') ?"
+    ask.en = "Which apps would you backup (list separated by comma or 'all')?"
     ask.fr = "Souhaitez-vous effectuer des sauvegardes de vos applications ?"
     type = "string"
     default = "all"
