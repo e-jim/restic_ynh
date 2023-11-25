@@ -2,8 +2,8 @@ packaging_format = 2
 
 id = "restic"
 name = "Restic"
-description.en = "Backup your server with Restic"
-description.fr = "Sauvegardez votre serveur avec Restic"
+description.en = "Backup program that is fast, efficient and secure"
+description.fr = "Programme de sauvegarde rapide, efficace et sécurisé"
 
 version = "0.16.2~ynh1"
 
