@@ -5,7 +5,7 @@ name = "Restic"
 description.en = "Backup program that is fast, efficient and secure"
 description.fr = "Programme de sauvegarde rapide, efficace et sécurisé"
 
-version = "0.16.2~ynh1"
+version = "0.16.4~ynh1"
 
 maintainers = ["Lionel Coupouchetty-Ramouchetty"]
 
@@ -119,12 +119,10 @@ ram.runtime = "50M"
 
         [resources.sources.main]
 
-        url = "https://github.com/restic/restic/releases/download/v0.16.2/restic_0.16.2_linux_amd64.bz2"
-        sha256 = "d68200fee4e3d0fafcdd0b20a2e6d7404dde053c3a71d5a8ca678d2e1f9f9e8e"
+        url = "https://github.com/restic/restic/releases/download/v0.16.4/restic_0.16.4_linux_amd64.bz2"
+        sha256 = "3d4d43c169a9e28ea76303b1e8b810f0dcede7478555fdaa8959971ad499e324"
         rename = "restic"
-
         autoupdate.strategy = "latest_github_tag"
-
 
     [resources.system_user]
 
