@@ -124,7 +124,7 @@ ram.runtime = "50M"
     armhf.sha256 = "60376b01b334a0cee3a59016f44dde8b336de2b6aa44f1e6e403d307990c47a0"
 
     in_subdir = false
-    rename = "restic"
+    rename = "restic.bz2"
 
     [resources.system_user]
 
